@@ -6,9 +6,12 @@ The comments in the cell below are there as a guide for thinking about the probl
 
 # Create a class called cart that retains items and has methods to add, remove, and show
 
-shopping_cart = {}
+# shopping_cart = {}
 
 class Cart:
+    
+    def __init__(self):
+        self.shopping_cart = {}
         
     def customer_decision(self):
         while True:
@@ -30,21 +33,21 @@ class Cart:
         print("What would you like to add? ")
         self.name = input('Item name: ').lower()
         self.quantity = int(input('How many would you like to add?  '))
-        shopping_cart[self.name] = {
+        self.shopping_cart[self.name] = {
             'quantity': {self.quantity}
         }    
-        print(shopping_cart)
+        print(self.shopping_cart)
 
                 
 
     def remove(self):
         self.remove_item = input('Which item would you like to remove?  ')
-        shopping_cart.pop(self.remove_item)
+        self.shopping_cart.pop(self.remove_item)
 
         
         
     def show(self):
-        print(shopping_cart)
+        print(self.shopping_cart)
     
 user = Cart()
 user.customer_decision()
