@@ -38,7 +38,10 @@ class Cart:
                 break   #break if user input is successful
             except: ValueError #looks for the value error which would occur if not entered in digits
             print('Please enter a valid number in digits.') #prompt user to retry their input with digits
-        self.shopping_cart[self.name] = {  #the key:value pair (self.name: self.quantity) are placed w/in the dict
+        if self.name in self.shopping_cart: #creates a conditional to check if the item being added is already present in the shopping cart.
+            self.shopping_cart[self.name]['quantity'] += self.quantity #if the item is already in the cart, it will go to the key and then add the quantity value to the existing quant.
+        else:
+            self.shopping_cart[self.name] = {  #otherwise, if the item is new, the key:value pair (self.name: self.quantity) are placed w/in the dict
             'quantity': self.quantity
         }    
         print(self.shopping_cart) #show the user their cart after adding item/quant
