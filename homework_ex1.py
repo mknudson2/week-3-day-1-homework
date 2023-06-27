@@ -23,31 +23,38 @@ class Cart:
             elif self.user_decision == 's':
                 self.show()
             elif self.user_decision == 'e':
+                print('Thank you for shopping with us! Please come again soon!\n')
+                print('~'*115)
                 break
             else:
-                print('Please enter a valid option: [a]dd, [r]emove, [s]ee, or [e]xit.')
+                print('Please enter a valid option: [a]dd, [r]emove, [s]ee, or [e]xit.\n')
 
     
-    
     def add(self):
-        print("What would you like to add? ")
+        print("\nWhat would you like to add? ")
         self.name = input('Item name: ').lower()
-        self.quantity = int(input('How many would you like to add?  '))
+        self.quantity = int(input('\nHow many would you like to add?  '))
         self.shopping_cart[self.name] = {
-            'quantity': {self.quantity}
+            'quantity': self.quantity
         }    
         print(self.shopping_cart)
 
-                
-
+    
     def remove(self):
-        self.remove_item = input('Which item would you like to remove?  ')
-        self.shopping_cart.pop(self.remove_item)
-
+        self.remove_item = input('Which item would you like to remove? ')
+        if self.remove_item in self.shopping_cart:
+            self.remove_quantity = int(input('\nHow many would you like to remove? '))
+            self.shopping_cart[self.remove_item]['quantity'] -= self.remove_quantity
+            if int(self.shopping_cart[self.remove_item]['quantity']) <= 0:
+                # del self.shopping_cart[self.remove_item]
+                self.shopping_cart.pop(self.remove_item)
+            print(f"{self.remove_quantity} {self.remove_item} has been removed from the cart. You now have {self.shopping_cart}.\n")
+        else:
+            print('\nItem not found in the cart.\n')
         
         
     def show(self):
-        print(self.shopping_cart)
+        print(f'\nYou have {self.shopping_cart} in your cart.\n')
     
 user = Cart()
 user.customer_decision()
